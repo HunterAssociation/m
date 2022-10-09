@@ -39,12 +39,12 @@ async def reload_admin_cache(client, message: Message, _):
         admins = app.get_chat_members(
             chat_id, filter=ChatMembersFilter.ADMINISTRATORS
         )
-        authusers = get_authuser_names(chat_id)
+        authusers = await get_authuser_names(chat_id)
         adminlist[chat_id] = []
         async for user in admins:
             if user.privileges.can_manage_video_chats:
                 adminlist[chat_id].append(user.user.id)
-        async for user in authusers:
+        for user in authusers:
             user_id = await alpha_to_int(user)
             adminlist[chat_id].append(user_id)
         await message.reply_text(_["admin_20"])
