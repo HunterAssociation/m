@@ -190,7 +190,7 @@ class TeleAPI:
                 eta = "Unknown"
             await mystic.edit_text(_["tg_1"].format(eta))
             return False
-
+        
         task = asyncio.create_task(down_load())
         lyrical[mystic.id] = task
         await task

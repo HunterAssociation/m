@@ -37,8 +37,7 @@ def testspeed(m):
 @app.on_message(filters.command(SPEEDTEST_COMMAND) & SUDOERS)
 async def speedtest_function(client, message):
     m = await message.reply_text("Running Speed test")
-    loop = asyncio.get_event_loop_policy().get_event_loop()
-    result = await loop.run_in_executor(None, testspeed, m)
+    result = asyncio.run(None, testspeed, m)
     output = f"""**Speedtest Results**
     
 <u>**Client:**</u>
